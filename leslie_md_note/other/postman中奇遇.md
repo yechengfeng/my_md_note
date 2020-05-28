@@ -2,7 +2,7 @@
 
    
 
-![postman截图](postman中奇遇.assets/截屏2020-05-26 13.44.21.png)
+![postman截图](postman中奇遇.assets/截屏20200526134421png)
 
 ​				
 
