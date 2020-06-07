@@ -27,47 +27,47 @@
 
 1. 自定义注解记录方法时间损耗
 
-   ![截屏2020-05-23 12.48.56](translate_project.assets/截屏2020-05-23 12.48.56.png)
+   ![自定义注解](translate_project.assets/截屏20200523124856.png)
 
 2. 注解的实现方法
 
-   ![截屏2020-05-23 12.50.24](translate_project.assets/截屏2020-05-23 12.50.24.png)
+   ![注解实现](translate_project.assets/截屏20200523125024.png)
 
-3. RedisConfig类，注入redis实例，重写序列化方法。用jdk默认的序列化可能出现存入数据库数据乱码。*important*![截屏2020-05-23 12.58.26](translate_project.assets/截屏2020-05-23 12.58.26.png)
+3. RedisConfig类，注入redis实例，重写序列化方法。用jdk默认的序列化可能出现存入数据库数据乱码。*important*![截屏2020-05-23 12.58.26](translate_project.assets/截屏20200523125826.png)
 
 4. 翻译的入口方法，熔断的配置。熔断的fallback方法。当翻译超过insert到数据库阈值时候，唤醒线程去消费到数据库中
 
-![截屏2020-05-23 13.02.18](translate_project.assets/截屏2020-05-23 13.02.18.png)
+![截屏2020-05-23 13.02.18](translate_project.assets/截屏20200523130218.png)
 
 ![截屏2020-05-23 13.03.49](translate_project.assets/截屏2020-05-23 13.03.49.png)
 
 5. 存入mysql的存储介质，当存储介质中有一定数量时候，存入数据库
 
-   ![截屏2020-05-23 13.12.31](translate_project.assets/截屏2020-05-23 13.12.31.png)
+   ![截屏2020-05-23 13.12.31](translate_project.assets/截屏20200523131231.png)
 
 6. 多线程insert到数据库中
 
-   ![截屏2020-05-23 13.14.28](translate_project.assets/截屏2020-05-23 13.14.28.png)
+   ![截屏2020-05-23 13.14.28](translate_project.assets/截屏20200523131428.png)
 
-7. redis的实现类一些方法，![截屏2020-05-23 13.17.07](translate_project.assets/截屏2020-05-23 13.17.07.png)
+7. redis的实现类一些方法，![截屏2020-05-23 13.17.07](translate_project.assets/截屏20200523131707.png)
 
 8. 翻译服务的具体方法
 
-   ![截屏2020-05-23 13.19.45](translate_project.assets/截屏2020-05-23 13.19.45-0211237.png)
+   ![截屏2020-05-23 13.19.45](translate_project.assets/截屏202005231319450211237.png)
 
    
 
    * 翻译的逻辑方法，走redis,还是 google翻译
 
-     ![截屏2020-05-23 13.26.06](translate_project.assets/截屏2020-05-23 13.26.06.png)
+     ![截屏2020-05-23 13.26.06](translate_project.assets/截屏20200523132606.png)
 
-   * ![截屏2020-05-23 13.21.57](translate_project.assets/截屏2020-05-23 13.21.57.png)
+   * ![截屏2020-05-23 13.21.57](translate_project.assets/截屏20200523132157.png)
 
-   * ![截屏2020-05-23 13.22.03](translate_project.assets/截屏2020-05-23 13.22.03-0211647.png)
+   * ![截屏2020-05-23 13.22.03](translate_project.assets/截屏202005231322030211647.png)
 
 9. springboot 启动类
 
-![截屏2020-05-23 13.28.26](translate_project.assets/截屏2020-05-23 13.28.26-0211864.png)
+![截屏2020-05-23 13.28.26](translate_project.assets/截屏202005231328260211864.png)
 
 10. Logback.xml日志配置
 
