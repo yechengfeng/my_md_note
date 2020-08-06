@@ -146,33 +146,16 @@ import java.util.ArrayList;
 | 李四 | 87   | 90   |
 | 王五 | 82   | 96   |
 
+# Typora转思维导图
 
+## 1. 安装pandoc
 
+[https://github.com/jgm/pandoc]{https://github.com/jgm/pandoc}github上下载安装pandoc
 
+## 2. 在Typora中将markdown文件转化为OPML
 
+**文件 → 导出 → OPML**
 
+## 3. 安装幕布
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**新建 → 导入OPML → 点击右上角思维导图标志即可查看思维导图**
