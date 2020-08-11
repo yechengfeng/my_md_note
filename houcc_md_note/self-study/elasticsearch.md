@@ -1,128 +1,5 @@
 # ElasticSearch
 
-## 一、Restful概念
-
-### 1. 什么是RestFul?
-
-`定义`：如果一个架构符合Rest设计，就称这个架构为Restful架构。Restful是一种软件架构风格，既不是标准也不是规范。
-
-### 2. 什么是Rest?
-
-HTTP协议
-
-`REST`：Resource Representational State Transfer 资源的表现层状态转化
-
-`Representational`：表现层。将网络中资源具体呈现出来的形式称之为表现层
-
-`State Transfer`：状态转化。如果客户端要操作服务器端资源，必须通过某种手段让服务器的资源发生状态转化。
-
-Rest设计原则：
-
->- 使用REST的URL替换传统URL请求
->
->  传统url：http://localhost:8989/xxx/find?id=21
->
->  RestURL：http://localhost:8989/xxx/find/id
->
->- 使用http四种动词对应服务器端四种操作
->
->  HTTP动词：GET查询获取资源	POST更新操作(添加)	PUT添加操作(更新)	DELETE删除操作
-
-Restful应用场景
-
-```java
-@RestController	//这是一个Restful风格控制器
-xxxController
-//GET查询
-@GetMapping("/get")
-public String get() {
-  ...
-}
-@PostMapping("/update")
-public String post() {
-  ...
-}
-@PutMapping("/put")
-public String put() {
-  ...
-}
-```
-
-## 二、ElasticSearch
-
-### 1. 什么是全文检索？
-
-
-
-
-
-### 2. ElasticSearch安装
-
-前提条件jdk环境
-
-网上提供的安装教程[Windows下安装elasticsearch7.4.0+Kibana+ik分词器](https://blog.csdn.net/qq_38138069/article/details/102516947)
-
-#### 1）安装`elasticsearch`
-
-> - 点击[ElasticSearch](https://www.elastic.co/cn/downloads/past-releases/elasticsearch-6-3-2)下载ZIP包并解压
-> - 双击bin目录下elasticsearch.bat文件，访问localhost:9200（默认端口号9200）
-
-![es](elasticsearch.assets/es-1593333673369.png)
-
-**注意**：ElasticSearch安装包应该放在没有空格和汉字的路径下，否则请求时会出现500
-
-#### 2）安装ElasticSearch的操作界面`kibana`
-
-> - 点击[kibana](https://www.elastic.co/cn/downloads/past-releases#kibana)下载与elasticsearch相同版本的kibana并解压；
-> - 双击bin目录下kibana.bat文件启动kibana，启动完成后访问localhost:5601（默认端口号5601）
-
-**注意**：kibana默认连接本地的elasticsearch，如需访问其他服务器的es或者es的端口号有被调整过，需要在config/kibana.yml文件中重新设置elasticsearch.hosts
-
-#### 3）安装`IK分词器`
-
-> - 点击[IK分词器](https://github.com/medcl/elasticsearch-analysis-ik/releases)下载对应版本的elasticsearch_analysis_ik；
-> - 在elasticsearch安装包plugins文件夹下创建文件analysis-ik文件，将ik分词器zip包解压到该文件夹；
-> - 在config文件夹下的IKAnalyzer.cfg.xml配置文件中添加自定义分词此表和停用词词表，在相应的词表文件中添加分词重启es就可以啦~
-
-`安装elasticsearch-head`
-
-- 安装node.js，官网[https://nodejs.org/zh-cn/download/](https://nodejs.org/zh-cn/download/)下载node.js的msi版本进行傻瓜式安装；安装完成进入cmd终端执行node可进入node环境，两次ctrl+c退出；查看版本node -v   npm-v；安装淘宝npm:npm install ``-``g cnpm ``-``-``registry``=``https:``/``/``registry.npm.taobao.org；安装脚手架npm install ``-``g @vue``/``cli；版本2：npm install ``-``g @vue``/``cli；执行vue -V验证安装是否成功
-- 安装grunt
-
-```js
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-cnpm install -g grunt-cli
-```
-
-- 安装elasticsearch-head：[https://github.com/mobz/elasticsearch-head](https://github.com/mobz/elasticsearch-head)下载解压；cmd终端进入elasticsearch-head-master目录，执行npm install，完成之后启动npm run start，访问localhost:9100
-
-`es默认不允许跨域连接，若想实现跨域，进入elasticsearch的config目录下修改文件elasticsearch.yml：末尾添加 http.cors.enabled: true
-　　　　 http.cors.allow-origin: "*" 然后再重启`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 1. 什么是全文检索？
 
 **`全文检索`是计算机程序通过扫描文章中的每一个词，对每一个词建立一个索引，指明该词在文章中出现的次数和位置。当用户查询时根据建立的索引查找，类似于通过字典的检索字表查字的过程。**
@@ -135,13 +12,9 @@ cnpm install -g grunt-cli
 2. **搜索时英文不区分大小写。**
 3. **结果列表有相关度排序。**
 
-
-
 ## 2. 什么是Elastic Search
 
 **ElasticSearch**简称**ES**，是**基于Apache Lucene构建的开源搜索引擎，是当前流行的企业级搜索引擎**。Lucene本身就可以被认为迄今为止性能最好的一款开源搜索引擎工具包，但是Lucene的API相对复杂，需要深厚的搜索理论。很难集成到实际的应用中去。**但是ES是采用java语言编写，提供了简单易用的RestFul API，开发者可以使用其简单的RestFul API来开发相关的搜索功能，从而避免Licene的复杂性**。
-
-
 
 ## 3. ES的实际应用
 
@@ -154,8 +27,6 @@ cnpm install -g grunt-cli
 - **国内**
 
   **百度**、**新浪**、**阿里巴巴**、**腾讯**等公司均有对ES的使用。
-
-
 
 ## 4. ES安装
 
@@ -213,7 +84,7 @@ cnpm install -g grunt-cli
 
 ## 7. IK分词器
 
-> NOTE：默认ES中采用标准分词器进行分词，对中文采用单字分词、拥吻采用单词分词。这种方式并不适用于中文，因此需要修改ES对中文友好分词，从而得到更佳的效果
+> NOTE：默认ES中采用标准分词器进行分词，对中文采用单字分词、英文采用单词分词。这种方式并不适用于中文，因此需要修改ES对中文友好分词，从而得到更佳的效果
 
 ### 7.1 安装IK分词器
 
@@ -266,8 +137,6 @@ GET /_analyze
 	<entry key="remote_ext_stopwords">http://127.0.0.1:8087/es/my_stopwords.txt</entry>
 </properties>
 ```
-
-
 
 ## 8. Kibana基本操作
 
@@ -356,6 +225,10 @@ GET /_cat/indices?v			查看索引信息
 > `pri.store.size`：主分片存储的大小
 
 ### 8.2 文档(Document)的基本操作
+
+#### ES中索引库存储原理图
+
+![3.ES中索引的库的底层原理](elasticsearch.assets/3.ES中索引的库的底层原理.jpg)
 
 #### 添加文档
 
@@ -458,7 +331,9 @@ PUT /employee/_bulk
 
 ### 9.1 检索方式_search
 
-ES官方提供两种检索方式：一种是通过URL参数进行搜索，另一种是通过DSL(Domain Specified Language)进行搜索。官方更推荐使用第二种方式，因为第二种方方式是基于传递JSON作为请求体(request body)格式与ES进行交互，这种方式更强大、更简洁。
+ES官方提供两种检索方式：**一种是通过URL参数进行搜索，另一种是通过DSL(Domain Specified Language)进行搜索。官方更推荐使用第二种方式，因为第二种方方式是基于传递JSON作为请求体(request body)格式与ES进行交互，这种方式更强大、更简洁。**
+
+![image-20200701225025975](elasticsearch.assets/image-20200701225025975.png)
 
 - 使用语法
 
@@ -575,9 +450,10 @@ GET /course/_search?q=*&size=10&sort=updateTime:desc&from=5&_source=name,price
 
 #### 9.4.1 查询所有
 
-> **match_all关键字**：返回索引中全部文档
+> **match_all关键字**：返回索引中全部文档（默认只返回10条数据）
 
 ``` http
+#查询所有课程
 GET /course/_search
 {
   "query": {
@@ -586,13 +462,12 @@ GET /course/_search
 }
 ```
 
-
-
 #### 9.4.2 查询结果中返回指定条数（size）
 
-> **size关键字**：指定查询结果中返回指定条数。默认返回10条数据
+> **size关键字**：指定查询结果中返回指定条数
 
 ```http
+#查询前5条数据
 GET /course/_search
 {
   "query": {
@@ -607,6 +482,7 @@ GET /course/_search
 > **from关键字**：用来指定起始返回位置，和**size关键字连用可实现分页效果**
 
 ```http
+#每页5条数据，查第二页的数据
 GET /course/_search
 {
   "query": {
@@ -622,6 +498,7 @@ GET /course/_search
 > **_source关键字**：是一个数组，在数组中用来指定展示哪些字段
 
 ```http
+#指定查询返回字段title、price、difficulty
 GET /course/_search
 {
   "query": {
@@ -633,9 +510,24 @@ GET /course/_search
 
 #### 9.4.5 关键字查询（term）
 
-> **term关键字**：用来使用关键字查询
+> **term关键字**：用来使用关键字查询（精确查询，搜索前不会对搜索词进行分词拆解）
 
 ```http
+#查询课程标题带有“编程人员”的课程
+GET /course/_search
+{
+  "query": {
+    "term": {
+      "title": {
+        "value": "编程人员"
+      }
+    }
+  }
+}
+```
+
+```http
+#查询讲师是“编程不良人”的课程
 GET /course/_search
 {
   "query": {
@@ -648,13 +540,47 @@ GET /course/_search
 }
 ```
 
-**NOTE：通过使用tern查询可知，在ES中Mapping中keyword, date, integer, long, double, boolean, ip这些类型部分词，只有text类型分词。**
+**NOTE：通过使用term查询可知，在ES的mapping type中keyword, integer, long, double, date, boolean, ip这些类型不进行分词，只有text类型进行分词。**
 
-#### 9.4.6 范围查询（range）
+```http
+#terms查询
+GET /course/_search
+{
+  "query": {
+    "terms": {
+      "difficulty": [
+        "初级",
+        "高级"
+      ]
+    }
+  }
+}
+```
+
+
+
+#### 9.4.6 关键词分词查询（match）
+
+> **match关键字**：用来使用关键字查询（先对搜索词进行分词拆解，再同索引库进行匹配）
+
+```http
+#查询课程标题带有“编程人员”的课程
+GET /course/_search
+{
+  "query": {
+    "match": {
+      "title": "编程人员"
+    }
+  }
+}
+```
+
+#### 9.4.7 范围查询（range）
 
 > **range关键字**：用来指定查询指定范围内的文档
 
 ```http
+#查询课程价格在100以内的课程
 GET /course/_search
 {
   "query": {
@@ -668,28 +594,30 @@ GET /course/_search
 }
 ```
 
-#### 9.4.7 前缀查询（prefix）
+#### 9.4.8 前缀查询（prefix）
 
 > **prefix关键字**：用来检索含有指定前缀的关键字的相关文档
 
 ```http
+#根据my前缀搜索课程
 GET /course/_search
 {
   "query": {
     "prefix": {
       "title": {
-        "value": "mysql"
+        "value": "my"
       }
     }
   }
 }
 ```
 
-#### 9.4.8 通配符查询（wildcard）
+#### 9.4.9 通配符查询（wildcard）
 
 > **wildcard关键字**：通配符查询 ?用来匹配一个任意字符  *用来匹配多个任意字符
 
 ```http
+#模糊匹配多个任意字符
 GET /course/_search
 {
   "query": {
@@ -702,7 +630,7 @@ GET /course/_search
 }
 ```
 
-#### 9.4.9 多id查询（ids）
+#### 9.4.10 多id查询（ids）
 
 > **ids关键字**：值为数组类型，用来根据一组id获取多个对应的文档
 
@@ -717,13 +645,11 @@ GET /course/_search
 }
 ```
 
-#### 9.4.10 模糊查询（fuzzy）
+#### 9.4.11 模糊查询（fuzzy）
 
-> **fuzzy关键字**：用来模糊查询含有指定关键字的文档
+> **fuzzy关键字**：用来模糊查询含有指定关键字的文档（最大模糊错误必须在0~2之间）
 >
-> **NOTE**：最大模糊错误必须在0~2之间
->
-> ​				搜索关键词长度在1~2  不允许存在模糊 0
+> **NOTE**：搜索关键词长度在1~2  不允许存在模糊 0
 >
 > ​				搜索关键词长度在3~5  允许一次模糊     0 1
 >
@@ -740,7 +666,7 @@ GET /course/_search
 }
 ```
 
-#### 9.4.11 布尔查询（bool）
+#### 9.4.12 布尔查询（bool）
 
 > **bool关键字**：用来组合多个条件实现复杂查询
 >
@@ -785,7 +711,7 @@ GET /course/_search
 }
 ```
 
-#### 9.4.12 高亮查询（highlight）
+#### 9.4.13 高亮查询（highlight）
 
 > **highlight关键字**：可以让符合条件的文档中的关键词高亮
 >
@@ -804,16 +730,17 @@ GET /course/_search
   "highlight": {
     "pre_tags": ["<span style='color:red'>"], 
     "post_tags": ["</span>"], 
+    "require_field_match": "false", #默认为true,只对查询的字段进行高亮显示
     "fields": {
-      "description": {}
+      "*": {}
     }
   }
 }
 ```
 
-#### 9.4.13 多字段查询（multi_match）
+#### 9.4.14 多字段查询（multi_match）
 
-> **multi_match关键字**：多个字段中查询同一个关键词
+> **multi_match关键字**：多个字段中查询同一个关键词（先分词后匹配）
 
 ```http
 GET /course/_search
@@ -827,18 +754,18 @@ GET /course/_search
 }
 ```
 
-#### 9.4.14 多字段分词查询（query_string）
+#### 9.4.15 指定分词器分词查询（query_string）
 
-> **query_string关键字**：先将查询内容按照分词器分词再做相应的匹配
+> **query_string关键字**：先将查询内容按照分词器分词再做相应的匹配（默认不分词）
 
 ```http
 GET /course/_search
 {
   "query": {
     "query_string": {
-      "default_field": "description",
+      "default_field": "lecture",
       "analyzer": "ik_smart", 
-      "query": "实战教学"
+      "query": "编程不良人"
     }
   }
 }
@@ -848,7 +775,7 @@ GET /course/_search
 
 ### 10.1 过滤查询
 
-> 其实准确来说，ES中的查询操作分为2种: `查询(query)`和`过滤(filter)`。`查询即是之前提到的query查询，它 (查询)默认会计算每个返回文档的得分，然后根据得分排序`。`而过滤(filter)只会筛选出符合的文档，并不计算 得分，且它可以缓存文档 。所以，单从性能考虑，过滤比查询更快`。 
+> 其实准确来说，ES中的查询操作分为2种: `查询(query)`和`过滤(filter)`。`查询即是之前提到的query查询，它 (查询)默认会计算每个返回文档的得分，然后根据得分排序`。`而过滤(filter)只会筛选出符合的文档，并不计算得分，且它可以缓存文档。所以，单从性能考虑，过滤比查询更快`。 
 >
 > 换句话说，过滤适合在大范围筛选数据，而查询则适合精确匹配数据。一般应用时， 应先使用过滤操作过滤数据， 然后使用查询匹配数据。
 
@@ -874,7 +801,7 @@ GET /course/_search
         {
           "term": {
             "description": {
-              "value": "程序员"
+              "value": "编程"
             }
           }
         }
@@ -887,7 +814,9 @@ GET /course/_search
     }
   }
 }
+```
 
+```http
 # 使用terms过滤
 GET /course/_search
 {
@@ -912,7 +841,7 @@ GET /course/_search
 }
 ```
 
-#### 10.3.2 range fFilter
+#### 10.3.2 range Filter
 
 ```http
 GET /course/_search
@@ -1011,25 +940,26 @@ GET /course/_search?size=0
 > 计算从聚合文档中提取的数值的最大值/最小值
 
 ```http
-#最大值
+#获取讲师名为“风间影月”课程的最高播放量
 GET /course/_search?size=0
 {
-  "aggs": {
-    "max_price": {
-      "max": {
-        "field": "price"
-      }
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "lecture": {
+              "value": "风间影月"
+            }
+          }
+        }
+      ]
     }
-  }
-}
-
-#最小值
-GET /course/_search?size=0
-{
+  },
   "aggs": {
-    "min_price": {
-      "min": {
-        "field": "price"
+    "max_learningNum": {
+      "max": {
+        "field": "learningNum"
       }
     }
   }
@@ -1041,21 +971,20 @@ GET /course/_search?size=0
 > 计算从聚合文档中提取的数值的总和。
 
 ```http
+#计算讲师“风间影月”的所有课程的播放量总和
 GET /course/_search
 {
   "query": {
-    "bool": {
-      "filter": {
-        "term": {
-          "lecture": "编程不良人"
-        }
+    "term": {
+      "lecture": {
+        "value": "风间影月"
       }
     }
   },
   "aggs": {
-    "sum_price": {
+    "sum_of_learningNum": {
       "sum": {
-        "field": "price"
+        "field": "learningNum"
       }
     }
   }
@@ -1064,9 +993,10 @@ GET /course/_search
 
 ### 11.4 cardinary（唯一值）
 
-> cardinality 求唯一值，即不重复的字段有多少（相当于mysql中的distinct）
+> cardinary 求唯一值，即不重复的字段有多少（相当于mysql中的distinct）
 
 ```http
+#统计目前有多少讲师
 GET /course/_search?size=0
 {
   "aggs": {
@@ -1084,6 +1014,7 @@ GET /course/_search?size=0
 > terms聚合查询类似mysql中的group by
 
 ```http
+#统计各个讲师各有多少门课程
 GET /course/_search?size=0
 {
   "aggs": {
@@ -1096,6 +1027,48 @@ GET /course/_search?size=0
   }
 }
 ```
+
+```http
+GET /manniu_content_check_log_v1/_search?size=0
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "operationUserId": {
+              "value": "DrAjywpKzC5j3c2LbLicxZrB9qYW+TPh8xZcvmlStaU="
+            }
+          }
+        }
+      ]
+    }
+  }, 
+  "aggs": {
+    "count_by_operationUserId": {
+      "terms": {
+        "field": "operationUserId"
+      },
+      "aggs": {
+        "count_by_checkLogType": {
+          "terms": {
+            "field": "checkLogType"
+          },
+          "aggs": {
+            "count_by_operationType": {
+              "terms": {
+                "field": "operationType"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+
 
 ## 12. SpringBoot Data操作ES
 
@@ -1119,7 +1092,7 @@ spring:
 			cluster-nodes: 172.16.251.142:9300
 ```
 
-- spring-data（新版本推荐配置）RestHighLevelClient rest客户端 ElasticSearchRepository接口
+- spring-data（新版本推荐配置）RestHighLevelClient rest客户端
 
 ```java
 @Configuration
@@ -1160,7 +1133,7 @@ public void testUpdate() throws IOException {
     UpdateRequest course = new UpdateRequest("course", "3mj4rnMBf4NRW_ZXYuBB");
     course.doc("{\"price\": 30}", XContentType.JSON);
     UpdateResponse updateResponse = restHighLevelClient.update(course, RequestOptions.DEFAULT);
-    System.out.println(updateResponse.status());;
+    System.out.println(updateResponse.status());
 }
 ```
 
@@ -1259,6 +1232,8 @@ public void testSearch() {
 }
 ```
 
+强大、更灵活，单不能友好的对象操作
+
 ### 12.4 面向对象操作
 
 ![es存储java对象](elasticsearch.assets/es存储java对象.png)
@@ -1272,8 +1247,7 @@ public void testSearch() {
 @AllArgsConstructor
 @NoArgsConstructor
 /**
- * document用在类上
- * 作用：将Ems对象映射成ES中一条json格式文档
+ * @Document作用在类上，作用：将Student对象映射成ES中一条json格式文档
  * indexName用来指定这个对象的转为json文档存入哪个索引中 要求：ES服务器中之前不存在此索引名
  */
 @Document(indexName = "student")
@@ -1284,7 +1258,7 @@ public class Student {
     @Id
     private String id;
     /**
-     * @Field用在属性上 代表mapping中一个属性 一个字段 type:属性 用来指定字段类型  analyzer:指定分词器
+     * @Field用在属性上 代表mapping中一个属性 type:用来指定属性类型 analyzer:指定分词器
      */
     @Field(type = FieldType.Text, analyzer = "ik_smart")
     private String name;
@@ -1444,7 +1418,7 @@ public void testSearch() {
 
 ## 13. ES中集群相关概念
 
-### 15.1 相关概念
+### 13.1 相关概念
 
 #### 集群(cluster) 
 
@@ -1474,4 +1448,81 @@ public void testSearch() {
 
 > 总之，每个索引可以被分成多个分片。一个索引也可以被复制0次(意思是没有复制)或多次。一旦复制了，每个 索引就有了主分片(作为复制源的原来的分片)和复制分片(主分片的拷贝)之别。分片和复制的数量可以在索引创建的时候指定。在索引创建之后，你可以在任何时候动态地改变复制数量，但是不能改变分片的数量。 
 
-> 默认情况下，`Elasticsearch中的每个索引被分片5个主分片和1个复制`，这意味着，如果你的集群中至少有两个节点，你的索引将会有5个主分片和另外5个复制分片(1个完全拷贝)，这样的话每个索引总共就有10个分片。一个 索引的多个分片可以存放在集群中的一台主机上，也可以存放在多台主机上，这取决于你的集群机器数量。主分片和复制分片的具体位置是由ES内在的策略所决定的。 
+> 默认情况下，`Elasticsearch中的每个索引被分片1个主分片和1个复制`，这意味着，如果你的集群中至少有两个节点，你的索引将会有1个主分片和另外1个复制分片(1个完全拷贝)，这样的话每个索引总共就有10个分片。一个索引的多个分片可以存放在集群中的一台主机上，也可以存放在多台主机上，这取决于你的集群机器数量。主分片和复制分片的具体位置是由ES内在的策略所决定的。 
+
+### 13.2 快速搭建集群
+
+```markdown
+1. 将原有的ES安装包复制三份
+2. 删除复制目录中的data目录
+3. 编辑每个文件夹中config目录中jvm.options文件
+# 修改如下：(启动一个elasticsearch占用300m)
+-Xms300m
+-Xmx300m
+4. 分别修改三个文件夹中config目录中的elasticsearch.yml文件
+# 修改如下：
+cluster.name: my-es				#集群名称（集群名称必须一致）
+node.name: node-1				#节点名称（节点名称不能一致）
+network.host: 0.0.0.0			#监听地址
+http.port: 9201					#监听端口（在一台机器时服务端口不能一致）
+discovery.seeds_hosts: ["127.0.0.1:9302","127.0.0.1:9303"]	#另外两个节点的ip
+cluster.initial_master_nodes: ["node-1"]	#初始化主节点
+gateway.recover_after_nodes: 3	#集群可做master的最小节点数
+transport.tcp.port: 9301		#集群TCP端口（在一台机器搭建必须修改）
+5. 启动多个es
+6. 查看节点状态
+7. 查看集群健康
+http:127.0.0.1:9201/_cat/health?v
+```
+
+`es默认不允许跨域连接，若想实现跨域，进入elasticsearch的config目录下修改文件elasticsearch.yml：末尾添加 http.cors.enabled: true
+　　　　 http.cors.allow-origin: "*" 然后再重启`
+
+### 13.3 安装head插件
+
+> 由于head插件本质上还是一个nodejs的工程，因此需要安装node，使用npm来安装依赖的包
+
+- **安装node.js**
+
+  官网[https://nodejs.org/zh-cn/download/](https://nodejs.org/zh-cn/download/)下载windows的msi版本进行傻瓜式安装
+
+  安装完成后打开cmd查看版本node -v
+
+- **安装grunt**
+
+  grunt是一个很方便的构建工具，可以进行打包压缩、测试、执行等等的工作，head插件就是通过grunt启动的。因此需要安装grunt。
+  
+  ```yml
+  npm install -g cnpm --registry=https://registry.npm.taobao.org
+  cnpm install -g grunt-cli
+  ```
+  
+  安装完成之后查看版本号：grunt -version
+  
+- **下载插件**
+
+  [https://github.com/mobz/elasticsearch-head](https://github.com/mobz/elasticsearch-head)下载解压
+
+- **安装插件**
+
+  cmd终端进入elasticsearch-head-master目录，执行npm install
+
+- **修改elasticsearch配置文件**
+
+  ```yml
+  #是否支持跨域
+  http.cors.enabled: true
+  #表示支持所有域名
+  http.cors.allow-origin: "*"
+  ```
+
+
+- **启动并查看**
+
+  执行npm run start
+
+  ![head插件启动](elasticsearch.assets/head插件启动.png)
+
+  浏览器访问localhost:9100
+
+  ![header插件访问](elasticsearch.assets/header插件访问-1596509552631.png)
